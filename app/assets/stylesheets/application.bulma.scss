@@ -36,4 +36,11 @@
 // @import "bulma/sass/layout/hero.sass";
 // @import "bulma/sass/layout/section.sass";
 
-@import 'bulma/bulma';
+// 1. Optional Bulma overrides must come BEFORE Bulma
+@use "variables";
+
+// 2. Load Bulma via Sass modules
+@use "bulma/bulma" as *;
+
+// 3. Your app styles
+@use "components";
