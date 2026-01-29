@@ -1,0 +1,19 @@
+<%# locals: () -%>
+
+<!-- 
+  data-turbo-temporary is specified on the container element to prevent
+  Turbo from caching the alert during navigation. Without this attribute, users
+  will see the alert for a fraction of a second before it disappears if they
+  navigate back to a page with a flash after having navigated away due to
+  Turbo’s local cache.
+-->
+<div class="container is-fluid" data-turbo-temporary>
+  <% flash.each do |level, message| %>
+    <%= tag.div \
+      class: "notification is-#{level} is-light has-text-centered mt-4" do %>
+
+        <%= message %>
+
+    <% end %>
+  <% end %>
+</div>
