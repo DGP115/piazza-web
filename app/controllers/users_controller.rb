@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    # The check of password=password_confirmation is automatically handled by has_secure_password
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
