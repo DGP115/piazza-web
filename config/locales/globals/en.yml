@@ -28,3 +28,4 @@
 #       enabled: "ON"
 en:
   piazza: Piazza
+  login_required: "You must be logged in to access this section"

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_authentication only: [ :new, :create ]
   def new
     @user = User.new
   end
@@ -8,8 +9,10 @@ class UsersController < ApplicationController
     if @user.save
       # Recall, members is a collection so create action takes an array as input.
       @organization = Organization.create(members: [ @user ])
-      #
-      # TODO: Add user login after signup.
+
+      # For convenience, log the new user into the app right after successful sign up.
+      @app_session = @user.app_sessions.create
+      log_in(@app_session)
 
       redirect_to root_path,
         status: :see_other,
