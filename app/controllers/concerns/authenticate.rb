@@ -74,7 +74,7 @@ module Authenticate
     user = User.find(user_id)
     user.authenticate_app_session(app_session, token)
 
-  rescue NoMatchingPattenError, ActiveRecord::RecordNotFound
+  rescue NoMatchingPatternError, ActiveRecord::RecordNotFound
     nil
   end
 
