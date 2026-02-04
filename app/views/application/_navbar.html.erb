@@ -1,0 +1,54 @@
+<%# locals: () -%>
+
+<nav class="navbar is-link" data-controller="navbar">
+  <div class="navbar-brand">
+    <%= link_to root_path, class: "navbar-item" do %>
+      <strong class="is-size-3">Piazza</strong>
+    <% end %>
+    <a role="button" 
+       class="navbar-burger" 
+       data-navbar-target="burgerMenuButton"
+       data-action="navbar#toggle">
+      <!-- The 4 spans below are for the three lines of the burger menu icon -->
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu" data-navbar-target="menuDropdown">
+    <div class="navbar-start">
+      <%= link_to t(".create_ad"), "#", class: "navbar-item" %>
+      <% if logged_in? %>
+        <%= link_to t(".messages"), "#", class: "navbar-item" %>
+      <% end %>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+
+        <div class="buttons">
+          <% if logged_in? %>
+            <div class="navbar-item has-dropdown is-hoverable mr-4">
+              <%= link_to Current.user.name, "#", class: "navbar-link" %>
+              <div class="navbar-dropdown is-right">
+                <%= link_to t(".profile"), "#", class: "navbar-item" %>
+                <%= link_to t(".my_ads"), "#", class: "navbar-item" %>
+                <%= link_to t(".saved_ads"), "#", class: "navbar-item" %>
+                <hr class="navbar-divider">
+                <%= link_to t(".logout"), "#", class: "navbar-item" %>
+            </div>
+            
+          <% else %>
+            <%= link_to t(".sign_up"), sign_up_path, class: "button is-primary" %>
+            <%= link_to t(".login"), login_path, class: "button is-light" %>
+          <% end %>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</nav>
