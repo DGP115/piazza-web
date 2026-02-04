@@ -44,42 +44,45 @@ module Authenticate
     }
   end
 
+  def log_out
+    Current.app_session&.destroy
+  end
 
 
   private
 
-  def authenticate
-    Current.app_session = authenticate_using_cookie
-    Current.user = Current.app_session&.user
-  end
+    def authenticate
+      Current.app_session = authenticate_using_cookie
+      Current.user = Current.app_session&.user
+    end
 
-  # This method extracts the data from the encrypted cookie and while passing
-  # it to the authenticate_using method, it converts it to a hash with
-  # indifferent access. This means values can be retrieved using both the string
-  # and symbol version of the key.
-  def authenticate_using_cookie
-    app_session = cookies.encrypted[:app_session]
-    authenticate_using(app_session&.with_indifferent_access)
-  end
+    # This method extracts the data from the encrypted cookie and while passing
+    # it to the authenticate_using method, it converts it to a hash with
+    # indifferent access. This means values can be retrieved using both the string
+    # and symbol version of the key.
+    def authenticate_using_cookie
+      app_session = cookies.encrypted[:app_session]
+      authenticate_using(app_session&.with_indifferent_access)
+    end
 
-  def authenticate_using(data)
-    # decontsruct the provided hash into constituent data values.
-    # Id deconstruction can't occur, ruby generates a NoMatchingPatternError,
-    # so the rescue is invoked and nil is returned
-    data => { user_id:, app_session:, token: }
+    def authenticate_using(data)
+      # decontsruct the provided hash into constituent data values.
+      # Id deconstruction can't occur, ruby generates a NoMatchingPatternError,
+      # so the rescue is invoked and nil is returned
+      data => { user_id:, app_session:, token: }
 
-    # The User object is used to authenticate the app_session and token,
-    # returning an AppSession instance if it succeeds and nil if it doesn’t
-    # (by returning error ActiveRecord::RecordNotFound, this invoking the rescue).
-    user = User.find(user_id)
-    user.authenticate_app_session(app_session, token)
+      # The User object is used to authenticate the app_session and token,
+      # returning an AppSession instance if it succeeds and nil if it doesn’t
+      # (by returning error ActiveRecord::RecordNotFound, this invoking the rescue).
+      user = User.find(user_id)
+      user.authenticate_app_session(app_session, token)
 
-  rescue NoMatchingPatternError, ActiveRecord::RecordNotFound
-    nil
-  end
+    rescue NoMatchingPatternError, ActiveRecord::RecordNotFound
+      nil
+    end
 
-  def require_login
-    flash.now[:notice] = t("login_required")
-    render "sessions/new", status: :unauthorized
-  end
+    def require_login
+      flash.now[:notice] = t("login_required")
+      render "sessions/new", status: :unauthorized
+    end
 end

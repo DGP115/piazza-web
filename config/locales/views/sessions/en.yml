@@ -1,8 +1,10 @@
 en:
   sessions:
     new:
-      title: "Log In"
-      submit_button: "Log In"
+      title: Log In
+      submit_button: Log In
     create:
-      success: "Successfully logged in."
-      incorrect_details: "Incorrect email or password. Please try again"
+      success: Successfully logged in.
+      incorrect_details: Incorrect email or password. Please try again
+    destroy:
+      success: You've logged out successfully!

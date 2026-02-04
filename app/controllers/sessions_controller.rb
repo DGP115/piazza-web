@@ -21,6 +21,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    # Use the Authenticate concern to log out the user by deleting the encrypted cookie.
+    log_out
+
+    flash[:success] = t(".success")
+    redirect_to root_path, status: :see_other
+  end
+
   private
 
   def login_params
