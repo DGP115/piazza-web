@@ -34,14 +34,21 @@ module Authenticate
     Current.user.present?
   end
 
-  # Using a Rails helper to store the user's session data in an encrypted cookie.
-  # It’s also chained with the permanent cookie jar meaning the cookie will live for
-  # 20 years. This way, the user won’t be logged out if they close the browser or
+  # Using a Rails helper to store the user's session data.  If the user checks "rememer me" the session is
+  # stoted in an encrypted cookie.  It’s also chained with the permanent cookie jar meaning the cookie will
+  # live for 20 years. This way, the user won’t be logged out if they close the browser or
   # the app.
-  def log_in(app_session)
-    cookies.encrypted.permanent[:app_session] = {
-      value: app_session.to_hash
-    }
+  # If "remember_me" is not checked, the cookie expires when the session does.
+  def log_in(app_session, remember_me)
+    if remember_me
+      cookies.encrypted.permanent[:app_session] = {
+        value: app_session.to_hash
+      }
+    else
+      cookies.encrypted[:app_session] = {
+        value: app_session.to_hash
+      }
+    end
   end
 
   def log_out

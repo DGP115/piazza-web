@@ -12,7 +12,7 @@ module User::Authentication
 
   class_methods do
     def create_app_session(email:, password:)
-      # We use authenticate_by to retrieve and authenticate the user against the password.
+      # authenticate_by is provided by Rails (in "comes with" 'has_secure_password').
       # This method cryptographically digests the password regardless of
       # whether a User record is found. This mitigates timing-based enumeration
       # attacks using which an attacker could determine whether or not a User
