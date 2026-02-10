@@ -1,14 +1,15 @@
 <% content_for :title, t(".title") %>
 
-<layout-columns class="columns is-centered">
-  <layout-column class="column-box is-5 mt-6 p-5 m-4">
+<div class="columns is-centered">
+  <div class="column-box is-5 mt-6 p-5 m-4">
 
     <h1 class="title has-text-centered">
       <%= t(".title") %>
     </h1>
 
     <%= form_with(model: @user, 
-                  url: sign_up_path, 
+                  url: sign_up_path,
+                  local: true, 
                   class: "is-flex is-flex-direction-column") do |form| %>
 
       <div class="block">
@@ -36,6 +37,6 @@
 
     <% end%>
 
-  </layout-column>
+  </div>
 
-</layout-columns>
+</div>

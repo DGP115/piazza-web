@@ -78,5 +78,5 @@ Rails.application.configure do
   #
   # DGP: Add:  Enable Rails to bind the rails server to the local network.
   # This enables app to be demonstrated on phone.
-  config.hosts << /192\.168\.68\.\d+/
+  config.hosts << "192.168.68.113"
 end

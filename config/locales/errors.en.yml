@@ -1,0 +1,7 @@
+en:
+  errors:
+    messages:
+      too_short:
+        one: "is too short (minimum is %{count} character)"
+        other: "is too short (minimum is %{count} characters)"
+      confirmation: "does not match the password"

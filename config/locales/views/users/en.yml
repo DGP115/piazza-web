@@ -4,4 +4,4 @@ en:
       title: Sign Up for Piazza
       sign_up: Sign Up!
     create:
-      welcome: "Welcome to Piazza, %{name}!"
+      welcome: "Welcome to Piazza, %{name}"
