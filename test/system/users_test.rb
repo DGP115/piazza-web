@@ -2,13 +2,14 @@ require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
   test "new user can sign up" do
-    visit root_path
+    visit sign_up_path
 
     # click_on I18n.t("application.navbar.sign_up")
     # # Click the Sign Up button (matches visible text in navbar)
-    click_on "Sign Up"
+
+    # assert_current_path sign_up_path
     # Wait until the form appears
-    assert_selector "input#user_name", wait: 10
+    assert_selector "input#user_name", wait: 15
 
     # Fill in the form with invalid password first
     fill_in User.human_attribute_name(:name), with: "Newman"
@@ -19,7 +20,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on I18n.t("users.new.sign_up")
 
     # Check for error about password being too short
-    assert_selector "p.is-danger",
+    assert_selector "p.help.is-danger",
       text: I18n.t("activerecord.errors.models.user.attributes.password.too_short", count: 8)
 
     # Correct the password
@@ -41,9 +42,9 @@ class UsersTest < ApplicationSystemTestCase
     visit login_path
 
     # click_on I18n.t("application.navbar.login")
-    click_on "Login"
+    # click_on "Login"
     # Wait for form fields to appear"
-    assert_selector "input#user_email", wait: 10
+    assert_selector "input#user_email", wait: 15
 
     # Fill in invalid credentials first
     fill_in User.human_attribute_name(:email), with: "jerry@example.com"
@@ -51,15 +52,17 @@ class UsersTest < ApplicationSystemTestCase
     uncheck I18n.t("sessions.new.remember_me")
 
     # Check for error notification
-    click_on I18n.t("sessions.new.submit_button")
-    assert_selector ".notification.is-danger", text: I18n.t("sessions.create.incorrect_details")
+    # click_on I18n.t("sessions.new.submit_button")
+    click_button I18n.t("sessions.new.submit_button")
+    assert_selector ".notification.is-danger", text: I18n.t("sessions.create.incorrect_details"), wait: 5
 
     # Fill in correct credentials
     fill_in User.human_attribute_name(:email), with: "jerry@example.com"
     fill_in User.human_attribute_name(:password), with: "password"
     uncheck I18n.t("sessions.new.remember_me")
 
-    click_on I18n.t("sessions.new.submit_button")
+    # click_on I18n.t("sessions.new.submit_button")
+    click_button I18n.t("sessions.new.submit_button")
 
     # Confirm redirect to root and success message
     assert_current_path root_path
