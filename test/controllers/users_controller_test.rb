@@ -41,7 +41,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
     assert_select "p.is-danger",
-      text: I18n.t("errors.messages.too_short", count: 8)
+      text: I18n.t("activerecord.errors.models.user.attributes.password.too_short", count: 8)
   end
 
   test "UC3 shows error on password confirmation doesn't match" do
@@ -61,6 +61,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
     assert_select "p.is-danger",
-      text: I18n.t("errors.messages.confirmation")
+      text: I18n.t("activerecord.errors.models.user.attributes.password_confirmation.confirmation")
   end
 end

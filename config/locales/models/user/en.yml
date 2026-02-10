@@ -8,3 +8,19 @@ en:
         email: Email
         password: Password
         password_confirmation: Password confirmation
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short:
+                one: "is too short (minimum is %{count} character)"
+                other: "is too short (minimum is %{count} characters)"
+              blank: "Can't be blank"
+            password_confirmation: 
+              confirmation: "does not match the password"
+            name:
+              blank: "can't be blank"
+            email:
+              blank: "can't be blank"
+              invalid: "is not a valid email"
