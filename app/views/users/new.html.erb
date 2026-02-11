@@ -37,6 +37,13 @@
 
     <% end%>
 
+    <% if turbo_native_app? %>
+      <p class="has-text-centered">
+        <%= t(".login_message") %>
+        <%= link_to t(".login"), login_path %>
+      </p>
+    <% end %>
+
   </div>
 
 </div>

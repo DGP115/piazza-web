@@ -25,6 +25,14 @@
       <%= form.submit t(".submit_button"), 
             class: "button is-primary is-medium is-align-self-flex-end mb-3 mt-3" %>
     <% end %>
+
+    <% if turbo_native_app? %>
+      <p class="has-text-centered">
+        <%= t(".sign_up_message") %>
+        <%= link_to t(".sign_up"), sign_up_path %>
+      </p>
+    <% end %>
+
   </div>
 </div> 
 

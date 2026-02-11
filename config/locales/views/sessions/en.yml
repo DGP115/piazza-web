@@ -4,6 +4,8 @@ en:
       title: Log In
       remember_me: Remember me
       submit_button: Log In
+      sign_up_message: Haven't got an account yet?
+      sign_up: Sign up now.
     create:
       success: Successfully logged in.
       incorrect_details: Incorrect email or password. Please try again
