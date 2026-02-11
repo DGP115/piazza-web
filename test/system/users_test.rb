@@ -20,7 +20,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on I18n.t("users.new.sign_up")
 
     # Check for error about password being too short
-    assert_selector "p.help.is-danger",
+    assert_selector ".help.is-danger",
       text: I18n.t("activerecord.errors.models.user.attributes.password.too_short", count: 8)
 
     # Correct the password
@@ -70,5 +70,18 @@ class UsersTest < ApplicationSystemTestCase
     # To verify the user is logged in, check that the dropdown menu is present.  "Visible" is false because
     # the menu only appears when the user mouses over it.
     assert_selector ".navbar-dropdown", visible: false
+  end
+  test "user can update name" do
+    # Use system test helper method to log in
+    log_in(users(:jerry))
+
+    visit profile_path
+
+    fill_in User.human_attribute_name(:name), with: "Jerry Seinfeld"
+    click_button I18n.t("users.show.save_profile")
+
+    # assert_selector "form .notification", text: I18n.t("users.update.success")
+
+    assert_field "user_name", with: "Jerry Seinfeld"
   end
 end

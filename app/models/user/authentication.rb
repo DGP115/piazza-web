@@ -6,7 +6,14 @@ module User::Authentication
     # authenticate_token(unencrypted)
     has_secure_password
 
-    validates :password, presence: true, length: { minimum: 8 }
+    # Rails validations can be restricted to certain contexts. The context(s) are
+    # specified by supplying an on: option in the validates directive.
+    # For example, only validate password on the creation of a record or changing of password
+    validates :password,
+      on: %i[ create password_change ],
+      presence: true,
+      length: { minimum: 8 }
+
     has_many :app_sessions
   end
 

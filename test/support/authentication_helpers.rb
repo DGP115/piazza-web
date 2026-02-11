@@ -1,4 +1,5 @@
 module AuthenticationHelpers
+  # Since most controller tests will need a logged in user
   def log_in(user, password: "password")
     post login_path, params: {
       user: {

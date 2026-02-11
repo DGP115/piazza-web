@@ -63,4 +63,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_select "p.is-danger",
       text: I18n.t("activerecord.errors.models.user.attributes.password_confirmation.confirmation")
   end
+
+  test "UC4 can update user details" do
+    @user = users(:jerry)
+    # Note:  This log_in method is a helper found in /support/authentication_helpers.rb
+    log_in @user
+
+    patch profile_path, params: {
+      user: {
+        name: "Jerry Seinfeld"
+      }
+    }
+
+    assert_redirected_to profile_path
+    assert_equal "Jerry Seinfeld", @user.reload.name
+  end
 end

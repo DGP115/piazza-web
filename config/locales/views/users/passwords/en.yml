@@ -1,0 +1,6 @@
+en:
+  users:
+    passwords:
+      update:
+        success: Your password has been chaged
+        incorrect_password: Your entry of your current password was incorrect

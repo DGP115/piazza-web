@@ -1,0 +1,111 @@
+<html data-theme="light"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+    <title>Log In | Piazza</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Piazza">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    
+
+    
+
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <link rel="stylesheet" href="/assets/application-5dc58b4e.css" data-turbo-track="reload">
+    <script src="/assets/application-9e0919f2.js" data-turbo-track="reload" type="module"></script>
+  </head>
+
+  <body>
+    
+<nav class="navbar is-link" data-controller="navbar">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <strong class="is-size-3">Piazza</strong>
+</a>    <a role="button" class="navbar-burger" data-navbar-target="burgerMenuButton" data-action="navbar#toggle">
+      <!-- The 4 spans below are for the three lines of the burger menu icon -->
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu" data-navbar-target="menuDropdown">
+    <div class="navbar-start">
+      <a class="navbar-item" href="#">Create Ad</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+
+        <div class="buttons">
+            <a class="button is-primary" href="/sign_up">Sign Up</a>
+            <a class="button is-light" href="/login">Login</a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</nav>
+    
+<!-- 
+  data-turbo-temporary is specified on the container element to prevent
+  Turbo from caching the alert during navigation. Without this attribute, users
+  will see the alert for a fraction of a second before it disappears if they
+  navigate back to a page with a flash after having navigated away due to
+  Turbo’s local cache.
+-->
+<div class="container is-fluid" data-turbo-temporary="">
+</div>
+
+    <main>
+      
+<div class="columns is-centered">
+  <div class="column box is-5 mt-6 p-5 m-4">
+    <h1 class="title has-text-centered" %="">
+      Log In
+    </h1>
+
+    <form class="is-flex is-flex-direction-column" action="/login" accept-charset="UTF-8" method="post" aria-busy="true">
+      <div class="block">
+        <label class="label" for="user_email">Email</label>
+        <input class="input" required="required" autofocus="autofocus" type="email" name="user[email]" id="user_email">
+      </div>
+
+      <div class="block">
+        <label class="label" for="user_password">Password</label>
+        <input class="input" required="required" type="password" name="user[password]" id="user_password">
+      </div>
+
+      <div class="block">
+        <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+        <label for="user_remember_me">Remember me</label>
+      </div>
+
+      <input type="submit" name="commit" value="Log In" class="button is-primary is-medium is-align-self-flex-end mb-3 mt-3" data-disable-with="Log In" disabled="">
+</form>  </div>
+</div> 
+
+
+    </main>
+  
+
+</body></html>

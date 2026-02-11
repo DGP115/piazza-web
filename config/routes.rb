@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   get "sign_up", to: "users#new"
   post "sign_up", to: "users#create"
 
+  resource :profile, only: %i[ show update ], controller: "users"
+
+  # Route user password changes to users/passwords_controller update action
+  namespace :users do
+    patch "change_password", to: "passwords#update"
+  end
+
   # Sessions routes
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
