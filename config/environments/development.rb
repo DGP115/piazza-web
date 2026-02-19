@@ -79,4 +79,8 @@ Rails.application.configure do
   # DGP: Add:  Enable Rails to bind the rails server to the local network.
   # This enables app to be demonstrated on phone.
   config.hosts << "192.168.68.113"
+  config.hosts << "10.0.2.2"
+
+  # DGP:  Allow the WSL2 subnet access to teh rails server console [So you can see servie activity]
+  config.web_console.allowed_ips = "172.31.0.0/16"
 end
