@@ -69,3 +69,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# DGP addition
+gem "premailer-rails", "~> 1.12"
