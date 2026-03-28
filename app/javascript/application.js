@@ -6,5 +6,7 @@ import "./controllers"
 // Prevent duplicate Strada registration in dev reloads
 if (!window.__piazzaStradaInitialized) {
   window.__piazzaStradaInitialized = true
-  await import("@hotwired/strada")
+  import("@hotwired/strada").catch((error) => {
+    console.error("Failed to load Strada", error)
+  })
 }

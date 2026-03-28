@@ -1,0 +1,19 @@
+en:
+  users:
+    password_resets:
+      new:
+        title: Reset your password
+        info: An email will be sent with instructions to reset your password.
+        email_label: Enter your email address
+        submit: Send password reset email
+      create:
+        title: Email sent
+        message: Check your email for a link to set a new password.
+        password_reset_instructions_sent: An email has been sent with instructions to reset your password.
+        email_not_found: No account found with that email address.
+      edit:
+        title: Enter a new password
+        submit: Change password
+      update:
+        password_reset_successful: Your password has been reset successfully.
+        invalid_link: Sorry, the password reset link is invalid or has expired. Please try again.

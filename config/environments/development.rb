@@ -86,4 +86,14 @@ Rails.application.configure do
   # DGP:  Allow the WSL2 subnet access to the rails server console [So you can see server activity]
   # config.web_console.allowed_ips = "172.31.0.0/16"
   config.web_console.allowed_ips = "172.31.176.1/16"
+
+  # To support gem letter_opener, which opens emails in the browser instead of sending them. }
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = {
+    host: "localhost:3000",
+    protocol: "http"
+  }
 end

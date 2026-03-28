@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   # "Authentication" is a concern that encapsulates all authentication-related
   # logic for the User model.
-  include Authentication
+  # Similarly, PasswordReset
+  include Authentication, PasswordReset
 
   validates :name, presence: true
   validates :email,

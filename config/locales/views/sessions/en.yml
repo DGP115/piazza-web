@@ -6,8 +6,10 @@ en:
       submit_button: Log In
       sign_up_message: Haven't got an account yet?
       sign_up: Sign up now.
+      password_reset: Forgot your password?
     create:
       success: Successfully logged in.
       incorrect_details: Incorrect email or password. Please try again
     destroy:
       success: You've logged out successfully!
+  

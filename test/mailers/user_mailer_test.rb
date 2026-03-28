@@ -13,7 +13,7 @@ class UserMailerTest < ActionMailer::TestCase
     # The with method is how parameters are passed to a mailer.
     email = UserMailer
               .with(user: @user)
-              .password_reset
+              .password_reset("reset_token")
               .deliver_now
 
     assert_match @user.name, email[:to].unparsed_value

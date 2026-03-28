@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   # Route user password changes to users/passwords_controller update action
   namespace :users do
     patch "change_password", to: "passwords#update"
+    resources :password_resets, only: %i[ new create edit update ]
   end
 
   # Sessions routes
