@@ -58,6 +58,7 @@ group :development, :test do
   # DGP addition
   gem "i18n-debug"
   gem "letter_opener", "~> 1.10"
+  gem "faker", "~> 3.6", ">= 3.6.1"
 end
 
 group :development do

@@ -19,7 +19,7 @@
 
   <div class="navbar-menu" data-navbar-target="menuDropdown">
     <div class="navbar-start">
-      <%= link_to t(".create_ad"), "#", class: "navbar-item" %>
+      <%= link_to t(".create_ad"), new_listing_path, class: "navbar-item" %>
       <% if logged_in? %>
         <%= link_to t(".messages"), "#", class: "navbar-item" %>
       <% end %>

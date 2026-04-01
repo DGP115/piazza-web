@@ -29,4 +29,8 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
+
+  # Listings routes
+  # We don’t need an index action because the FeedController will handle that aspect.
+  resources :listings, except: :index
 end
