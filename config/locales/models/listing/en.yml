@@ -1,0 +1,11 @@
+# In order to enable the listings condition enum values to be localized, we need to add the following 
+# translations to the activerecord.attributes.listing.conditions namespace. 
+en:
+  activerecord:
+    attributes:
+      listing:
+        conditions:
+          mint: New
+          near_mint: As good as new
+          used: Used
+          defective: Defective
