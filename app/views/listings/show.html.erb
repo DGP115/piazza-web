@@ -11,6 +11,8 @@
       <%= link_to t(".edit"), edit_listing_path(@listing) %>
     </div>
 
+    <%= render "tags", listing: @listing %>
+
     <layout-columns class="columns is-centered">
       <layout-column class="box column is-half mt-6 p-5 m-4">
         <dl>
@@ -29,7 +31,7 @@
             <span><%= t(".save") %></span>
           <% end %>
 
-          <%= link_to "#", class: "button is-primary is-medium" do %>
+          <%= button_to "", class: "button is-primary is-medium" do %>
             <%= svg("message",
                     class: "icon is-small mr-3",
                     fill: "#fff") %>
@@ -46,7 +48,7 @@
             <%= Listing.human_attribute_name(:price) %>
           </dt>
           <dd class="has-text-weight-semibold is-size-5">
-            <%= "$#{@listing.price}" %>
+            $<%= number_to_currency(@listing.price, precision: 2) %>
           </dd>
 
           <br>

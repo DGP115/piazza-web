@@ -9,3 +9,10 @@ en:
           near_mint: As good as new
           used: Used
           defective: Defective
+    errors:
+      models:
+        listing:
+          attributes:
+            tags:
+              too_short: At least one tag must be specified
+              too_long: You can't specifiy more than 5 tags

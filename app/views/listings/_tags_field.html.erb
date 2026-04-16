@@ -1,0 +1,52 @@
+<%# locals: (form:) -%>
+
+<form-field class="field" data-controller="tags">
+  <%= form.label :tags, class: "label" %>
+  <p class="has-text-weight-normal has-text-grey is-italic mb-2">
+    <%= t(".description") %>
+  </p>
+
+  <!--This is the "container" that will receive the tags entered by the user 
+      (and written here by the stimulus controller)-->
+  <layout-container class="field is-grouped is-grouped-multiline",
+                    data-tags-target="tagscontainer">
+
+    <!-- Render the existing tags for the listing, if there are any. -->
+    <% if form.object.tags.present? %>
+      <% form.object.tags.each do |tagvalue| %>
+        <%= render partial: "tag", locals: { value: tagvalue, form: form } %>
+      <% end %>
+    <% end %>
+  </layout-container>
+
+
+  <form-field class="field is-grouped">
+
+    <div class="control is-expanded">
+      <!--Recall:  "text_field_tag" is a Rails helper.  It is used to display and 
+                    capture user input not (directly) tied to a model. 
+                    It's arguments are name, value, class -->
+      <%= text_field_tag nil, nil, class: "input", data: { tags_target: "input" } %>
+    </div>
+
+    <div class="control">
+      <button class="button is-info", type="button", data-action="tags#addTag">
+        <%= t(".add_tag") %>
+      </button>
+    </div>
+
+  </form-field>
+
+  <!--Since the tags field is customized, errors are not rendered automatically.
+      We need to do that manually. -->
+  <p class="help is-danger">
+    <% if form.object.errors.include?(:tags) %>
+      <%= form.object.errors.messages_for(:tags).to_sentence %>
+    <% end %>
+  </p>
+
+  <!-- Recall:  Content within <template> is not rendered until it is cloned into the DOM -->
+  <template data-tags-target="template">
+    <%= render partial: "tag", locals: { value: "{value}", form: form } %>
+  </template>
+</form-field>

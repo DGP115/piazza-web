@@ -1,0 +1,30 @@
+<%# locals: (form: nil, value:) -%>
+
+<ui-tag class="control tags has-addons" data-controller="remove-element">
+  <span class="tag is-primary">
+    #<%= value %>
+  </span>
+
+  <!-- This partial is used in read-only contexts as well so only render
+       the <input> if a form object is passed in.
+       To generate the hidden <input>, we’re using the fields_for helper.
+       This sets up a scope to create fields for an entity within the form’s object.
+          - The name for the hidden_field is nil in order to render the empty []
+            required to send an array to the server.
+          - The id is nil to avoid clashes with <input>s for the other tags.
+          - The value of the <input> is the same as the displayed value of the tag so
+            so there is no need to amend our Stimulus controller to make this work -->
+  <% if form.present? %>
+    <%= form.fields_for(:tags) do |fields| %>
+      <%= fields.hidden_field nil, id: nil, value: value %>
+    <% end %>
+    <!-- Add delete button
+         Note:  Stimulus controller remove-element deletes the whole element, so the
+         hidden field (used to realy tag values to the controller is also removed.
+         This means the tag will be removed when the
+         listing is updated -->
+    <div class="tag is-primary is-delete"
+          data-action="remove-element#remove">
+    </div>
+  <% end %>
+</ui-tag>

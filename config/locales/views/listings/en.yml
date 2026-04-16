@@ -19,3 +19,8 @@ en:
       success: Your ad has been updated!
     destroy:
       success: Your ad has been deleted!
+    tags_field:
+      description: >
+        You can add up to 5 tags to your ad.
+        They act as categories.
+      add_tag: Add Tag
