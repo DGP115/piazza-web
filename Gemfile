@@ -74,3 +74,4 @@ end
 
 # DGP addition
 gem "premailer-rails", "~> 1.12"
+gem "iso_country_codes", "~> 0.7.8"

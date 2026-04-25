@@ -5,8 +5,8 @@
     <%= link_to root_path, class: "navbar-item" do %>
       <strong class="is-size-3">Piazza</strong>
     <% end %>
-    <a role="button" 
-       class="navbar-burger" 
+    <a href="/" role="button"
+       class="navbar-burger"
        data-navbar-target="burgerMenuButton"
        data-action="navbar#toggle">
       <!-- The 4 spans below are for the three lines of the burger menu icon -->
@@ -20,7 +20,7 @@
   <div class="navbar-menu" data-navbar-target="menuDropdown">
     <div class="navbar-start">
       <%= link_to t(".create_ad"), new_listing_path, class: "navbar-item" %>
-      <% if logged_in? %>
+      <% if logged_in? %> <%# herb:disable actionview-no-silent-helper %>
         <%= link_to t(".messages"), "#", class: "navbar-item" %>
       <% end %>
     </div>
@@ -29,7 +29,7 @@
       <div class="navbar-item">
 
         <div class="buttons">
-          <% if logged_in? %>
+          <% if logged_in? %> <%# herb:disable actionview-no-silent-helper %>
 
             <div class="navbar-item has-dropdown is-hoverable mr-4">
               <%# The id: below is used to enable a turbo_stream to update user name in navbar after %>
@@ -38,18 +38,20 @@
                           profile_path, 
                           id: "current_user_name",
                           class: "navbar-link" %>
-                          
+
               <div class="navbar-dropdown is-right">
                 <%= link_to t(".profile"), profile_path, class: "navbar-item" %>
-                <%= link_to t(".my_ads"), "#", class: "navbar-item" %>
+                <%= link_to t(".my_ads"), "", class: "navbar-item" %>
                 <%= link_to t(".saved_ads"), "#", class: "navbar-item" %>
                 <hr class="navbar-divider">
                 <%= link_to t(".logout"), 
                       logout_path, 
                       class: "navbar-item", 
                       data: { turbo_method: :delete } %>
+              </div>
+
             </div>
-            
+
           <% else %>
             <%= link_to t(".sign_up"), sign_up_path, class: "button is-primary" %>
             <%= link_to t(".login"), login_path, class: "button is-light" %>

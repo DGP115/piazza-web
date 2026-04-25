@@ -35,9 +35,9 @@
       <%= form.submit t(".sign_up"), 
                       class: "button is-primary is-medium is-align-self-flex-end mb-3 mt-3" %>
 
-    <% end%>
+    <% end %>
 
-    <% if turbo_native_app? %>
+    <% if turbo_native_app? %> <%# herb:disable actionview-no-silent-helper %>
       <p class="has-text-centered">
         <%= t(".login_message") %>
         <%= link_to t(".login"), login_path %>

@@ -1,0 +1,36 @@
+<%# locals: (form:) -%>
+
+<%= form.fields_for :address, form.object.address do |fields| %>
+  <form-field class="field">
+    <%= fields.label t("addresses.form.line_1"), class: "label" %>
+    <%= fields.text_field :line_1, class: "input" %>
+  </form-field>
+
+  <form-field class="field">
+    <%= fields.label t("addresses.form.line_2"), class: "label" %>
+    <%= fields.text_field :line_2, class: "input" %>
+  </form-field>
+
+  <form-field class="field is-horizontal">
+    <div class="control mr-2">
+      <%= fields.label t("addresses.form.city"), class: "label" %>
+      <%= fields.text_field :city, class: "input" %>
+    </div>
+    <div class="control ml-2">
+      <%= fields.label t("addresses.form.subnational_division"), class: "label" %>
+      <%= fields.text_field :subnational_division, class: "input" %>
+    </div>
+    <div class="control ml-2">
+      <%= fields.label t("addresses.form.postcode"), class: "label" %>
+      <%= fields.text_field :postcode, class: "input" %>
+    </div>
+  </form-field>
+
+  <form-field class="field">
+    <%= fields.label t("addresses.form.country"), class: "label" %>
+    <div class="select is-fullwidth">
+      <%= fields.select :country, 
+                        options_for_select(IsoCountryCodes.for_select, "CA") %>
+    </div>
+  </form-field>
+<% end %>

@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_012054) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_17_001132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "listing_condition", ["mint", "near_mint", "used", "defective"]
+
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "addressable_id"
+    t.string "addressable_type"
+    t.string "city"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.string "line_1"
+    t.string "line_2"
+    t.string "postcode"
+    t.string "subnational_division"
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
+  end
 
   create_table "app_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false

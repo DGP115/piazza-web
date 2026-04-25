@@ -4,6 +4,10 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    # Recall:  the .build_"model_we_have_a_polymorphic_assocation_with" method
+    #          is provided by Rails when we have a polymorphic association.
+    #          It initializes the associated model and sets up the correct foreign keys and type.
+    @listing.build_address
   end
 
   def create
@@ -45,7 +49,10 @@ class ListingsController < ApplicationController
 
   private
     def listing_params
-      params.require(:listing).permit(:title, :price, :condition, tags: [])
+      # Note: a concern is referenced here to encapsulate the permitted attributes.
+      # This is because a Listing includes an Address but other models could also
+      # include an Address
+      params.require(:listing).permit(Listing.permitted_attributes)
     end
 
     def load_listing

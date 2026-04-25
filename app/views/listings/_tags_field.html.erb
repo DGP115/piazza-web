@@ -6,9 +6,9 @@
     <%= t(".description") %>
   </p>
 
-  <!--This is the "container" that will receive the tags entered by the user 
+  <!--This is the "container" that will receive the tags entered by the user
       (and written here by the stimulus controller)-->
-  <layout-container class="field is-grouped is-grouped-multiline",
+  <layout-container class="field is-grouped is-grouped-multiline"
                     data-tags-target="tagscontainer">
 
     <!-- Render the existing tags for the listing, if there are any. -->
@@ -23,14 +23,14 @@
   <form-field class="field is-grouped">
 
     <div class="control is-expanded">
-      <!--Recall:  "text_field_tag" is a Rails helper.  It is used to display and 
-                    capture user input not (directly) tied to a model. 
+      <!--Recall:  "text_field_tag" is a Rails helper.  It is used to display and
+                    capture user input not (directly) tied to a model.
                     It's arguments are name, value, class -->
       <%= text_field_tag nil, nil, class: "input", data: { tags_target: "input" } %>
     </div>
 
     <div class="control">
-      <button class="button is-info", type="button", data-action="tags#addTag">
+      <button class="button is-info" type="button" data-action="tags#addTag">
         <%= t(".add_tag") %>
       </button>
     </div>

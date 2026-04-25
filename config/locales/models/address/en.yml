@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    attributes:
+      address:
+        line_1: "House/Apt #"
+        line_2: Street
+        city: City
+        subnational_division: Prov/State
+        country: Country
+        postcode: Postal Code

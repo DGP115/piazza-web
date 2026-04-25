@@ -1,5 +1,11 @@
 en:
   listings:
+    form:
+      title: Create a new ad
+      price: Price
+      currency_symbol: $
+      condition: Condition
+      address: Address
     new:
       title: Create a new ad
       publish: Publish ad
@@ -10,6 +16,7 @@ en:
       edit: Edit
       contact: Send Message
       save: Save this ad
+      location: Location
     edit:
       title: Edit your ad
       delete: Delete

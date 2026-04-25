@@ -1,7 +1,7 @@
 <%# locals: (form:) -%>
 
 <div class="block">
-  <%= form.label :title, class: "label" %>
+  <%= form.label t(".title"), class: "label" %>
   <%= form.text_field :title, class: "input is-large" %>
 </div>
 
@@ -9,11 +9,11 @@
   <layout-column class="box column is-half mt-6 p-5 m-4">
     <div class="is-flex is-flex-direction-column">
       <form-field class="field">
-        <%= form.label :price, class: "label" %>
+        <%= form.label t(".price"), class: "label" %>
         <form-field class="field has-addons">
           <p class="control">
             <a class="button is-static">
-            $
+            <%= t(".currency_symbol") %>
             </a>
           </p>
           <p class="control is-expanded">
@@ -25,17 +25,26 @@
       </form-field>
 
       <form-field class="field">
-        <%= form.label :condition, class: "label" %>
+        <%= form.label t(".condition"), class: "label" %>
         <div class="select is-fullwidth">
           <%= form.select :condition, Listing.human_enum_options(:condition) %>
         </div>
       </form-field>
 
       <form-field class="field">
-        <%= render partial: "tags_field", locals: { form: form }%>
+        <%= render partial: "tags_field", locals: { form: form } %>
       </form-field>
-      
+
+      <form-field class="field">
+        <%= form.label t(".address"), class: "label is-large" %>
+        <div class="box">
+          <%= render partial: "addresses/fields", locals: { form: form } %>
+        </div>
+      </form-field>
+
     </div>
   </layout-column>
-</layout-columns>
 
+  <layout-column class="box column is-half mt-6 p-5 m-4">
+  </layout-column>
+</layout-columns>

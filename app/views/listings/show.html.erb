@@ -22,6 +22,15 @@
           <dd class="has-text-weight-semibold is-size-5">
             <%= @listing.creator.name %>
           </dd>
+
+          <br>
+
+          <dt class="has-text-gray">
+            <%= t(".location") %>
+          </dt>
+          <dd class="has-text-weight-semibold is-size-5">
+            <%= @listing.address.redacted %>
+          </dd>
         </dl>
 
         <layout-group class="buttons mt-6">
@@ -48,7 +57,7 @@
             <%= Listing.human_attribute_name(:price) %>
           </dt>
           <dd class="has-text-weight-semibold is-size-5">
-            $<%= number_to_currency(@listing.price, precision: 2) %>
+            <%= number_to_currency(@listing.price, precision: 2) %>
           </dd>
 
           <br>

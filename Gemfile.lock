@@ -146,6 +146,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    iso_country_codes (0.7.8)
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -415,6 +416,7 @@ DEPENDENCIES
   faker (~> 3.6, >= 3.6.1)
   i18n-debug
   image_processing (~> 1.2)
+  iso_country_codes (~> 0.7.8)
   jbuilder
   jsbundling-rails
   kamal
@@ -489,6 +491,7 @@ CHECKSUMS
   image_processing (1.14.0) sha256=754cc169c9c262980889bec6bfd325ed1dafad34f85242b5a07b60af004742fb
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.16.0) sha256=2abe56c9ac947cdcb2f150572904ba798c1e93c890c256f8429981a7675b0806
+  iso_country_codes (0.7.8) sha256=2c4500926c0be4c31228ff18da095f12494046191aba6925a5d9c904bc52ca63
   jbuilder (2.14.1) sha256=4eb26376ff60ef100cb4fd6fd7533cd271f9998327e86adf20fd8c0e69fabb42
   jsbundling-rails (1.3.1) sha256=0fa03f6d051c694cbf55a022d8be53399879f2c4cf38b2968f86379c62b1c2ca
   json (2.18.0) sha256=b10506aee4183f5cf49e0efc48073d7b75843ce3782c68dbeb763351c08fd505

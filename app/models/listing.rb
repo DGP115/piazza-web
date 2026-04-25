@@ -1,4 +1,7 @@
 class Listing < ApplicationRecord
+  # The HasAddress concern encapsulates the polymorphic association of Listing and Address
+  include HasAddress, PermittedAttributes
+
   belongs_to :creator, class_name: "User"
   belongs_to :organization
 
