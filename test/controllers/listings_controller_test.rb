@@ -2,8 +2,10 @@ require "test_helper"
 class ListingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:jerry)
+    @address = addresses(:auto_listing_1_jerry_address)
     log_in @user
   end
+
 
   test "can create a listing" do
     assert_difference "Listing.count", 1 do
@@ -11,7 +13,16 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
         listing: {
           title: Faker::Commerce.product_name,
           price: Faker::Commerce.price.floor,
-          condition: Listing.conditions.keys.sample
+          condition: Listing.conditions.keys.sample,
+          tags: [ "cars" ],
+          address_attributes: @address.attributes.slice(
+            "line_1",
+            "line_2",
+            "city",
+            "subnational_division",
+            "country",
+            "postcode"
+          )
         }
       }
     end
@@ -24,7 +35,16 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
         listing: {
           title: "title",
           price: 300,
-          condition: Listing.conditions.keys.sample
+          condition: Listing.conditions.keys.sample,
+          tags: [ "cars" ],
+          address_attributes: @address.attributes.slice(
+            "line_1",
+            "line_2",
+            "city",
+            "subnational_division",
+            "country",
+            "postcode"
+        )
         }
       }
     end
@@ -39,7 +59,17 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
       listing: {
         title: new_title,
         price: @listing.price,
-        condition: Listing.conditions.keys.sample
+        condition: Listing.conditions.keys.sample,
+        tags: [ "cars" ],
+        address_attributes: @address.attributes.slice(
+            "id",
+            "line_1",
+            "line_2",
+            "city",
+            "subnational_division",
+            "country",
+            "postcode"
+        )
       }
     }
     assert_redirected_to listing_path(@listing)
@@ -49,10 +79,20 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
   test "error when updating a listing with invalid data" do
     @listing = listings(:auto_listing_1_jerry)
     patch listing_path(@listing), params: {
-        listing: {
+      listing: {
         title: @listing.title,
         price: "NaN",
-        condition: Listing.conditions.keys.sample
+        condition: Listing.conditions.keys.sample,
+        tags: [ "cars" ],
+        address_attributes: @address.attributes.slice(
+          "id",
+          "line_1",
+          "line_2",
+          "city",
+          "subnational_division",
+          "country",
+          "postcode"
+        )
       }
     }
     assert_response :unprocessable_entity
@@ -63,7 +103,7 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
     assert_difference "Listing.count", -1 do
       delete listing_path(@listing)
     end
-    assert_redirected_to root_path
+    assert_redirected_to my_listings_path
   end
 
   test "listing title length validation.too short" do
@@ -72,7 +112,16 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
         listing: {
           title: "123",
           price: Faker::Commerce.price.floor,
-          condition: Listing.conditions.keys.sample
+          condition: Listing.conditions.keys.sample,
+          tags: [ "cars" ],
+          address_attributes: @address.attributes.slice(
+            "line_1",
+            "line_2",
+            "city",
+            "subnational_division",
+            "country",
+            "postcode"
+          )
         }
       }
     end
@@ -81,16 +130,25 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "listing title length validation.too long" do
-  assert_no_difference "Listing.count" do
-    post listings_path, params: {
-      listing: {
-        title:  "a" * 101,
-        price: Faker::Commerce.price.floor,
-        condition: Listing.conditions.keys.sample
+    assert_no_difference "Listing.count" do
+      post listings_path, params: {
+        listing: {
+          title:  "a" * 101,
+          price: Faker::Commerce.price.floor,
+          condition: Listing.conditions.keys.sample,
+          tags: [ "cars" ],
+          address_attributes: @address.attributes.slice(
+              "line_1",
+              "line_2",
+              "city",
+              "subnational_division",
+              "country",
+              "postcode"
+            )
+        }
       }
-    }
-  end
-  assert_response :unprocessable_entity
-  assert_select "p.is-danger"
+    end
+    assert_response :unprocessable_entity
+    assert_select "p.is-danger"
   end
 end

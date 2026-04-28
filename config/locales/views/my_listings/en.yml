@@ -1,0 +1,5 @@
+en:
+  my_listings:
+    show:
+      title: "My Ads"
+      no_ads: "You haven't posted any ads yet."

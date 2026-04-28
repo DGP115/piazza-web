@@ -43,7 +43,7 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to my_listings_path, status: :see_other
     flash[:success] = t(".success")
   end
 

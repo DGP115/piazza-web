@@ -1,11 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+auto_listing_1_jerry_address:
+  addressable: auto_listing_1_jerry (Listing)
+  line_1: <%= Faker::Address.building_number %>
+  line_2: <%= Faker::Address.street_name %>
+  city: <%= Faker::Address.city %>
+  subnational_division: <%= Faker::Address.state_abbr %>
+  country: CA
+  postcode: <%= Faker::Address.postcode %>
+

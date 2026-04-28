@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   # Listings routes
   # We don’t need an index action because the FeedController will handle that aspect.
   resources :listings, except: :index
+  resource :my_listings, only: :show
 end

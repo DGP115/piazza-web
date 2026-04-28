@@ -1,0 +1,22 @@
+<% content_for :title, t(".title") %>
+
+<h1 class="title has-text-centered">
+  <%= t(".title") %>
+</h1>
+
+<div class="container mt-3">
+  <% if @listings.any? %>
+    <layout-columns class="columns is-centered is-multiline">
+      <%= render partial: "listings/listing", collection: @listings, layout: "feed/listing_layout" %>
+    </layout-columns>
+
+    <div class="container m-5 mt-6">
+      <!-- The pagy gem provides helper methods for rendering pagination controls in views.  The pagy_nav_js method renders pagination controls that use JavaScript to fetch new pages of results without a full page reload.  The :bulma argument specifies that the pagination controls should be styled using the Bulma CSS framework. -->
+      <%== @pagy.input_nav_js(:bulma) %>
+    </div>
+  <% else %>
+    <div class="notification is-info">
+      <%= t(".no_ads") %>
+    </div>
+  <% end %>
+</div>

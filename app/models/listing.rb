@@ -15,4 +15,10 @@ class Listing < ApplicationRecord
   validates :tags, length: { in: 1..5 }
 
   normalizes :tags, with: ->(tags)  { tags.map(&:downcase) }
+
+  # To avoid n+1 queries [a query for address for each listing], eager load the address
+  # association when fetching listings for the feed
+  scope :feed, -> { order(created_at: :desc)
+                    .includes(:address)
+                  }
 end

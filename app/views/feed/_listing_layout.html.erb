@@ -1,0 +1,8 @@
+<!-- The listing cards need margins between them.  These margins shouldn't be specified
+     within the _listing partial itself because that shouldn’t have knowledge about the
+     layout in which it is contained.  Rails partials can have their own layouts,
+     just like the view files themselves -->
+
+<layout-column class="column is-4-desktop is-6-tablet">
+  <%= yield %>
+</layout-column>

@@ -2,6 +2,6 @@
 
 <layout-container class="field is-grouped is-grouped-multiline">
   <% listing.tags.each do |tagvalue| %>
-    <%= render partial: "tag", locals: { value: tagvalue } %>
+    <%= render partial: "listings/tag", locals: { value: tagvalue } %>
   <% end %>
 </layout-container>

@@ -1,4 +1,6 @@
 en:
   feed:
     show:
-      title: "Your Feed"
+      title: Your Feed
+      welcome: Welcome to Piazza
+      welcome_with_name: Welcome to Piazza, %{name}

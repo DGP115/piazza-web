@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
   include Authenticate
   include SetCurrentRequestDetails
 
+  # Required to use pagy gem for pagination in controllers and views
+  include Pagy::Method
+
   # Turbo adds a Turbo-Frame HTTP header when a request originates from within a Turbo Frame.
   # The turbo-rails gem has a method called turbo_frame_request? that checks if this header exists.
   # It’s not exposed as a helper method though, so it needs to be declared as such
