@@ -10,4 +10,11 @@ module ApplicationHelper
 
     "#{content_for(:title)} | #{t("piazza")}"
   end
+
+  def pagy_needed?
+    # A helper used to omit pagy navigation when there is only one page of results.
+    # This is used in the feed page.
+    # Also, omit pagy navigation if running on Android (where infinite scrolling is used instead).
+    !turbo_native_app? && (@pagy && @pagy.pages > 1)
+  end
 end

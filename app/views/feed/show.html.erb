@@ -4,21 +4,40 @@
   <%= t(".title") %>
 </h1>
 
-<div class="container mt-3">
-  <h1 class="title">
-    <% if logged_in? %>
-      <%= t(".welcome_with_name", name: Current.user.name) %>
-    <% else %>
-      <%= t(".welcome") %>
+<div class="container">
+  <% if !turbo_native_app? %>
+    <h1 class="title mt-3 mb-2 ">
+      <% if logged_in? %>
+        <%= t(".welcome_with_name", name: Current.user.name) %>
+      <% else %>
+        <%= t(".welcome") %>
+      <% end %>
+    </h1>
+  <% end %>
+
+  <% page = params[:page].to_i || 1 %>
+
+  <%= turbo_frame_tag "feed_page_#{page}", target: "_top" do %>
+
+    <layout-columns class="columns is-centered is-multiline">
+      <%= render partial: "listings/listing", collection: @listings, layout: "listing_layout" %>
+    </layout-columns>
+
+    <% if turbo_native_app? && @pagy.next %>
+
+      <turbo-frame id="feed_page_<%= page + 1 %>"
+        target="_top"
+        src="<%= root_path(page: page + 1) %>"
+        loading="lazy">
+      </turbo-frame>
+
     <% end %>
-  </h1>
+  <% end %>
 
-  <layout-columns class="columns is-centered is-multiline">
-    <%= render partial: "listings/listing", collection: @listings, layout: "listing_layout" %>
-  </layout-columns>
-
-  <div class="container m-5 mt-6">
-    <!-- The pagy gem provides helper methods for rendering pagination controls in views.  The pagy_nav_js method renders pagination controls that use JavaScript to fetch new pages of results without a full page reload.  The :bulma argument specifies that the pagination controls should be styled using the Bulma CSS framework. -->
-    <%== @pagy.input_nav_js(:bulma) %>
-  </div>
+  <% if pagy_needed? %>
+    <div class="container m-5 mt-6">
+      <!-- The pagy gem provides helper methods for rendering pagination controls in views.  The pagy_nav_js method renders pagination controls that use JavaScript to fetch new pages of results without a full page reload.  The :bulma argument specifies that the pagination controls should be styled using the Bulma CSS framework. -->
+      <%== @pagy.series_nav(:bulma) %>
+    </div>
+  <% end %>
 </div>

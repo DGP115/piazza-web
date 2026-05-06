@@ -14,6 +14,8 @@ class UsersController < ApplicationController
       @app_session = @user.app_sessions.create
       log_in(@app_session, remember_me: false)
 
+      # Recall:  recede_or_redirect is provided by turbo to
+      #           redirect if run on a web browser or recede if on android
       recede_or_redirect_to root_path, status: :see_other
       flash[:success] = t(".welcome", name: @user.name)
     else
