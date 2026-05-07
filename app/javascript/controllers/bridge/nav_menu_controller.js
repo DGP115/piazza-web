@@ -19,6 +19,7 @@ export default class extends BridgeComponent {
         .map(item => new BridgeElement(item))
         .map((item, index) => ({
           title: item.title,
+          icon: item.bridgeAttribute("icon"),
           index
         }))
     
